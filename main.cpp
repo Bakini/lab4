@@ -56,6 +56,20 @@ bool search(Node* r,int value){
             r=r->right;
         }
     }
+    return false;
+}
+
+int count_occurrences(Node* r,int value){
+    if(r==nullptr){
+        return 0;
+    }
+
+    int count=0;
+    if(r->data==value){
+        count=1;
+    }
+
+    return count+count_occurrences(r->left,value)+count_occurrences(r->right,value);
 }
 
 int main(){
@@ -82,5 +96,6 @@ int main(){
     }else{
         std::cout<<"Число не найдено\n";
     }
+    std::cout<<"Количество вхождений: "<<count_occurrences(root,D)<<"\n";
     return 0;
 }
